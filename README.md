@@ -5,8 +5,11 @@ I learned these attacks through the amazing public research from [SpecterOps](ht
 
 
 ## Enumerate SCCM Environment
-**Requires [SCCMHunter](https://github.com/garrettfoster13/sccmhunter/wiki)**
+### Requirements: 
+- Any domain credentials
+- [SCCMHunter](https://github.com/garrettfoster13/sccmhunter/wiki)
 
+### Steps:
 1. Enumerate possible SCCM machines  
 ```python3 sccmhunter.py find -u <user> -p <password> -d <domain> -dc-ip <dc-ip>```
 2. Gather SCCM roles and check configs such as SMB signing  
@@ -16,8 +19,14 @@ I learned these attacks through the amazing public research from [SpecterOps](ht
 
 ## SMB Relaying 
 
-**Requires any domain credentials and an SCCM server with SMB signing false**
+### Requirements:
+- Any domain credentials
+- At least two SCCM servers with ONE having SMB signing set to False
+- [PetitPotam](https://github.com/topotam/PetitPotam)
+- [Impacket tools](https://www.kali.org/tools/impacket/)
+- [Netexec](https://www.kali.org/tools/netexec/)
 
+  
 ### Steps:
 1. Start ntlmrelayx targeting an SCCM server with SMB signing set to false  
 ```python3 ntlmrelayx.py -t "<TARGET IP>" -smb2support –socks```
