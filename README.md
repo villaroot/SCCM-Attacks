@@ -39,7 +39,7 @@ I learned these attacks through the amazing public research from [SpecterOps](ht
 5. Authenticate to other SCCM servers that have SMB signing set to true  
 ```netexec smb <ip> -u <user> -H :<hash> --shares```
 
-### Remediations:
+### Recommendations:
 - Enforce [SMB signing](https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-signing-overview#policy-locations-for-smb-signing) on all servers and perform frequent auditing
 - Monitor for common coerce tools such as PetitPotam using default requests ([Splunk example](https://research.splunk.com/endpoint/95b8061a-0a67-11ec-85ec-acde48001122/)]
 - Monitor for credential dump through common tools such as secretsdump
