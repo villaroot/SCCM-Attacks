@@ -18,7 +18,7 @@ I learned these attacks through the amazing public research from [SpecterOps](ht
 ```python3 sccmhunter.py show -all ```
 
 ## SMB Relaying 
-
+[My Step-by-step Youtube Video](https://youtu.be/MM7RpPkMFRs)
 ### Requirements:
 - Any domain credentials
 - At least two SCCM servers with ONE having SMB signing set to False
