@@ -91,4 +91,5 @@ delete from RBAC_Admins where AdminID=<AdminID>
 ### Recommendations:
 - [Enable EPA](https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/connect-to-the-database-engine-using-extended-protection?view=sql-server-ver17#enable-extended-protection-for-the-database-engine) on MSSQL server and perform frequent auditing
 - Monitor for common coerce tools such as PetitPotam using default requests ([Splunk example](https://research.splunk.com/endpoint/95b8061a-0a67-11ec-85ec-acde48001122/)]
+- Monitoring SMS admins motifications such as adding users to this privileged group (Event IDs 4732/4733 for add/remove)
 
