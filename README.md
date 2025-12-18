@@ -46,15 +46,15 @@ I learned these attacks through the amazing public research from [SpecterOps](ht
 
 
 ## MSSQL Relaying 
-Video Coming Soon
+[Step-by-step Youtube Video](https://youtu.be/xbSzDlYhQNQ)  
 Coerce an SCCM server such as the Site Server (an [SMS Admin](https://learn.microsoft.com/en-us/intune/configmgr/core/plan-design/hierarchy/accounts#membership-for-sms-admins)) to an SCCM MSSQL server which will allow you the privileges to add any domain user to RBAC_Admins and become a [Full Administrator](https://learn.microsoft.com/en-us/intune/configmgr/core/understand/fundamentals-of-role-based-administration#security-roles).  
 ### Requirements:
 - Any domain credentials
-- At least two SCCM servers with ONE having MSSQL service and [EPA disabled](https://specterops.io/blog/2025/11/25/less-praying-more-relaying-enumerating-epa-enforcement-for-mssql-and-https/)
+- At least two SCCM servers with ONE having MSSQL service and [EPA disabled](https://specterops.io/blog/2025/11/25/less-praying-more-relaying-enumerating-epa-enforcement-for-mssql-and-https/) and the OTHER is the Site Server  
 - [PetitPotam](https://github.com/topotam/PetitPotam)
 - [Impacket tools](https://www.kali.org/tools/impacket/)
 - [RelayInformer](https://github.com/zyn3rgy/RelayInformer/tree/main/Python)
-
+- [SCCMHunter](https://github.com/garrettfoster13/sccmhunter/wiki)
   
 ### Steps:
 1. Check for EPA disabled or turned off  
